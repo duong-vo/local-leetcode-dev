@@ -22,10 +22,10 @@ def get_question_id(question):
 def check_submission(submission_id):
     check_url = f"https://leetcode.com/submissions/detail/{submission_id}/check/"
     headers = {"Referer": BASE_URL + f"two-sum/submissions/{submission_id}/",
-                 "Content-type": "application/json",
-                 "X-Requested-With": "XMLHttpRequest",
-                 "COOKIE": CHECK_COOKIE
-                 }
+               "Content-type": "application/json",
+               "X-Requested-With": "XMLHttpRequest",
+               "COOKIE": CHECK_COOKIE
+               }
     while True:
         check_res = requests.get(check_url, headers=headers)
         if check_res.json()['state'] == 'SUCCESS':
@@ -47,7 +47,7 @@ def submit_code(code, question):
                "X-Requested-With": "XMLHttpRequest",
                "X-CSRFToken": TOKEN,
                "Cookie": COOKIE
-              }
+               }
 
     res = requests.post(url, headers=headers, json=data)
     res_json = res.json()
@@ -55,8 +55,12 @@ def submit_code(code, question):
     result = check_submission(submission_id)
     return result
 
+def parse_file(filename):
+    f = open(filename, 'r')
+    return f.read()
+
 def main():
-    result = submit_code(data['typed_code'], 'two-sum')
+    result = submit_code(parse_file('test.py'), 'two-sum')
     display_result(result)
 
 main()
