@@ -32,9 +32,6 @@ def check_submission(submission_id):
             return check_res.json()
     return {'state': "PENDING"}
 
-def display_result(result):
-    print(result)
-
 def submit_code(code, question):
     data = {
         "lang": "python3",
@@ -58,6 +55,15 @@ def submit_code(code, question):
 def parse_file(filename):
     f = open(filename, 'r')
     return f.read()
+
+def display_result(result):
+    print(result)
+    status = result["status_msg"]
+    total = result["total_testcases"]
+    correct = result["total_correct"]
+    print(status)
+    print(f"{correct}/{total}")
+
 
 def main():
     result = submit_code(parse_file('test.py'), 'two-sum')
