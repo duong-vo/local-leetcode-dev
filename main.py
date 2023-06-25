@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 import requests
 
-    load_dotenv()
+load_dotenv()
 
 TOKEN = os.getenv("CSRF_TOKEN")
 SESSION = os.getenv("LEETCODE_SESSION")
