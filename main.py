@@ -70,8 +70,18 @@ def main():
     result = submit_code(parse_file('test.py'), 'two-sum')
     display_result(result)
 
+@click.group()
 
+def cli():
+    pass
 
+@click.command('submit')
+@click.argument('filename', type=click.Path(exists=True))
+@click.argument('question')
+def submit(filename, question):
+    submit_code(parse_file(filename), question)
 
+cli.add_command(submit)
 
-main()
+if __name__=='__main__':
+    cli()
