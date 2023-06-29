@@ -49,6 +49,7 @@ def submit_code(code, question):
 
     res = requests.post(url, headers=headers, json=data)
     res_json = res.json()
+    print(res_json)
     submission_id = res_json['submission_id']
     result = check_submission(submission_id)
     return result
@@ -65,13 +66,7 @@ def display_result(result):
     print(status)
     print(f"{correct}/{total}")
 
-
-def main():
-    result = submit_code(parse_file('test.py'), 'two-sum')
-    display_result(result)
-
 @click.group()
-
 def cli():
     pass
 
@@ -79,7 +74,8 @@ def cli():
 @click.argument('filename', type=click.Path(exists=True))
 @click.argument('question')
 def submit(filename, question):
-    submit_code(parse_file(filename), question)
+    result = submit_code(parse_file(filename), question)
+    display_result(result)
 
 cli.add_command(submit)
 
