@@ -46,10 +46,8 @@ def submit_code(code, question):
                "X-CSRFToken": TOKEN,
                "Cookie": COOKIE
                }
-
     res = requests.post(url, headers=headers, json=data)
     res_json = res.json()
-    print(res_json)
     submission_id = res_json['submission_id']
     result = check_submission(submission_id)
     return result
@@ -59,7 +57,6 @@ def parse_file(filename):
     return f.read()
 
 def display_result(result):
-    print(result)
     status = result["status_msg"]
     total = result["total_testcases"]
     correct = result["total_correct"]
