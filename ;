@@ -19,7 +19,7 @@ data = {
     "typed_code": "class Solution:\n    def twoSum(self, nums: List[int], target: int) -> List[int]:\n        # O(n) idea: check if the difference exist\n        # within the nums using a map\n        map = dict()\n        for i in range(len(nums)):\n            # check if the difference is already\n            # in the map\n            diff = target - nums[i]\n            if diff in map:\n                return [map[diff], i]\n            # if we cannot find,\n            # map the current number to its index"
 }
 def get_question_id(question):
-    url = 'https://leetcode.com/problems/two-sum/'
+    url = 'https://leetcode.com/problems/longest-substring-without-repeating-characters/'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     innerHTML = soup.find('span', class_='mr-2 text-label-1 dark:text-dark-label-1 text-lg font-medium').text.strip()
