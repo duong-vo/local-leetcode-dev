@@ -70,9 +70,10 @@ def cli():
 
 @click.command('submit')
 @click.argument('filename', type=click.Path(exists=True))
-@click.argument('question')
-def submit(filename, question):
-    result = submit_code(parse_file(filename), question)
+@click.argument('question_url')
+def submit(filename, question_url):
+    question_name = question_url.split("/")[-2]
+    result = submit_code(parse_file(filename), question_name)
     display_result(result)
 
 cli.add_command(submit)
