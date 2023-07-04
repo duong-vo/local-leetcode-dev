@@ -28,6 +28,7 @@ def check_submission(submission_id):
                "COOKIE": CHECK_COOKIE
                }
     while True:
+        print('Checking...')
         check_res = requests.get(check_url, headers=headers)
         if check_res.json()['state'] == 'SUCCESS':
             return check_res.json()
